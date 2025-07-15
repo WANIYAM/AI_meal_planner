@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - AI Meal Planner</title>
+  <meta name="description" content="Your personal AI meal planner for healthy and delicious meals.">
+  <meta name="keywords" content="meal planner, AI, healthy eating, recipes">
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  <style>
+    /* HISTORY SECTION STYLING */
+#historyList {
+  margin-top: 30px;
+}
+
+/* Plan container */
+.plan-history-block {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-left: 6px solid #4CAF50;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.plan-history-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+.plan-history-block h3 {
+  font-size: 1.4rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Day block */
+.day-block {
+  margin-bottom: 25px;
+}
+.day-block h4 {
+  font-size: 1.2rem;
+  color: #4CAF50;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+/* Meal row */
+.meal-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Meal card */
+.meal-card {
+  flex: 1 1 300px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #e1e1e1;
+  padding: 15px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  transition: all 0.2s ease;
+}
+.meal-card:hover {
+  background-color: #f1f1f1;
+}
+.meal-card p {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  color: #333;
+}
+.meal-card ul {
+  margin-top: 6px;
+  padding-left: 20px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Button */
+#seeAllBtn {
+  margin: 30px auto;
+  display: block;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#seeAllBtn:hover {
+  background-color: #43a047;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .meal-row {
+    flex-direction: column;
+  }
+}
+/* HISTORY SECTION STYLING */
+#historyList {
+  margin-top: 40px;
+}
+
+/* Plan container */
+.plan-history-block {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-left: 6px solid #4CAF50;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease-in-out;
+}
+.plan-history-block:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+.plan-history-block h3 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-weight: 700;
+  border-bottom: 2px solid #e8e8e8;
+  padding-bottom: 8px;
+}
+
+/* Day block */
+.day-block {
+  margin-bottom: 30px;
+}
+.day-block h4 {
+  font-size: 1.25rem;
+  color: #388e3c;
+  font-weight: 600;
+  border-left: 4px solid #4CAF50;
+  padding-left: 10px;
+  margin-bottom: 16px;
+}
+
+/* Meal row */
+.meal-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Meal card */
+.meal-card {
+  flex: 1 1 280px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  border: 1px solid #e1e1e1;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  transition: background-color 0.3s ease;
+}
+.meal-card:hover {
+  background-color: #f1f1f1;
+}
+.meal-card p {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  color: #333;
+}
+.meal-card ul {
+  margin-top: 8px;
+  padding-left: 20px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Divider between plans */
+.plan-history-block + hr {
+  margin-top: -10px;
+  margin-bottom: 40px;
+  border-top: 1px solid #ccc;
+}
+
+/* See All / Show Less button */
+#seeAllBtn {
+  margin: 40px auto 60px auto;
+  display: inline-block;
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+#seeAllBtn:hover {
+  background-color: #388e3c;
+  box-shadow: 0 6px 18px rgba(56, 142, 60, 0.4);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .meal-row {
+    flex-direction: column;
+  }
+
+  .meal-card {
+    flex: 1 1 100%;
+  }
+
+  .plan-history-block h3 {
+    font-size: 1.3rem;
+  }
+
+  .day-block h4 {
+    font-size: 1.1rem;
+  }
+
+  #seeAllBtn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+  </style>
+</head>
+<body class="index-page">
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <h1 class="sitename">AI Meal Planner</h1>
+        <span>.</span>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <!-- <li><a href="dashboard.html" class="active">Home<br></a></li> -->
+          <!-- <li><a href="#contact">Contact</a></li> -->
+          <!-- <li><a href="#about">About</a></li>           -->
+          <li><a href="plan.html">Meal Plan</a></li>
+          <li><a href="index.html">History</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="dashboard.html">logout</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <!-- <a class="btn-getstarted" href="index.html">Get Started</a> -->
+    </div>
+  </header>
+  <main class="main">
+    
+<div class="container">
+  <h2>Meal Plan History</h2>
+  <div id="historyList">Loading...</div>
+  <button id="seeAllBtn" >See All</button>
+</div>
+
+<script type="module">
+  import { auth, db } from './assets/js/firebase-config.js';
+  import {
+    onAuthStateChanged,
+    signOut
+  } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
+  import {
+    collection,
+    query,
+    where,
+    orderBy,
+    getDocs
+  } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js';
+
+  let currentUser = null;
+  let allPlans = [];
+  let showingAll = false; // track toggle state
+
+  onAuthStateChanged(auth, async user => {
+    if (!user) {
+      window.location.href = 'index.html';
+    } else {
+      currentUser = user;
+      await fetchPlans();
+    }
+  });
+
+  window.logout = async function () {
+    await signOut(auth);
+    window.location.href = 'index.html';
+  };
+
+  async function fetchPlans() {
+    const historyDiv = document.getElementById("historyList");
+    try {
+      const q = query(
+        collection(db, "plans"),
+        where("userId", "==", currentUser.uid),
+        orderBy("createdAt", "desc")
+      );
+      const snapshot = await getDocs(q);
+      if (snapshot.empty) {
+        historyDiv.innerHTML = "<p>No meal plans found.</p>";
+        return;
+      }
+      allPlans = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      renderPlans(false); // show only 3 plans by default
+    } catch (error) {
+      console.error("Error fetching history:", error);
+      historyDiv.innerHTML = "<p>Error loading history.</p>";
+    }
+  }
+
+  function renderPlans(showAll = false) {
+    const historyDiv = document.getElementById("historyList");
+    const seeAllBtn = document.getElementById("seeAllBtn");
+
+    const plansToShow = showAll ? allPlans : allPlans.slice(0, 3);
+    let html = "";
+
+    plansToShow.forEach(data => {
+      const createdAt = data.createdAt?.toDate().toLocaleString() || "Unknown date";
+      html += `<div class="plan-history-block">
+        <h3>Plan created on ${createdAt}</h3>
+        ${data.plan.map(day => `
+          <div class="day-block">
+            <h4>${day.day}</h4>
+            <div class="meal-row">
+              ${["breakfast", "lunch", "dinner"].map(type => {
+                const meal = day[type];
+                if (!meal || !meal.meal) return '';
+                return `
+                  <div class="meal-card">
+                    <p><strong>${type.charAt(0).toUpperCase() + type.slice(1)}:</strong> ${meal.meal}</p>
+                    <p>Calories: ${meal.calories || "N/A"}</p>
+                    <ul>
+                      ${(meal.ingredients || []).map(i => `<li>${i}</li>`).join("")}
+                    </ul>
+                  </div>`;
+              }).join("")}
+            </div>
+          </div>
+        `).join("")}
+      </div><hr/>`;
+    });
+
+    historyDiv.innerHTML = html;
+
+    // Toggle button visibility and label
+   if (allPlans.length > 3) {
+  seeAllBtn.disabled = false;
+  seeAllBtn.textContent = showAll ? "Show Less" : "See All";
+} else {
+  seeAllBtn.disabled = true;
+  seeAllBtn.textContent = "Only few plans";
+}
+seeAllBtn.style.display = "block"; // Always show
+
+  }
+
+  document.getElementById("seeAllBtn").addEventListener("click", () => {
+    showingAll = !showingAll;
+    renderPlans(showingAll);
+  });
+</script>
+
+
+  </main>
+  <footer id="footer" class="footer dark-background">
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-geo-alt icon"></i>
+          <div class="address">
+            <h4>Address</h4>
+            <p>A108 Adam Street</p>
+            <p>New York, NY 535022</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-telephone icon"></i>
+          <div>
+            <h4>Contact</h4>
+            <p>
+              <strong>Phone:</strong> <span>+1 5589 55488 55</span><br>
+              <strong>Email:</strong> <span>info@aimealplanner.com</span><br>
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-clock icon"></i>
+          <div>
+            <h4>Opening Hours</h4>
+            <p>
+              <strong>Mon-Sat:</strong> <span>9AM - 9PM</span><br>
+              <strong>Sunday</strong>: <span>Closed</span>
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h4>Follow Us</h4>
+          <div class="social-links d-flex">
+            <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">AI Meal Planner</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a href="https://themewagon.com">ThemeWagon</a>
+      </div>
+    </div>
+  </footer>
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <!-- Preloader -->
+  <div id="preloader"></div>
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
+
