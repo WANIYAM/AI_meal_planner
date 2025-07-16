@@ -1,18 +1,26 @@
-export default async function handler(req, res) {
+export default function handler(req, res) {
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Only POST allowed' });
+    return res.status(405).json({ error: 'Only POST requests allowed' });
   }
 
-  const { name, preference } = req.body;
+  const { age, weight, height, goal, preference } = req.body;
 
-  // You can put your meal planning logic here, or call another API
+  // Simulate a meal plan based on input (replace this with real logic or API call)
+  const sampleMeals = [
+    `${preference} Breakfast: Poha with Chai`,
+    `${preference} Lunch: Dal, Roti, and Salad`,
+    `${preference} Dinner: Khichdi with Curd`
+  ];
 
-  return res.status(200).json({
-    message: 'Plan generated successfully!',
+  res.status(200).json({
+    message: 'Meal plan generated successfully!',
     data: {
-      name,
+      age,
+      weight,
+      height,
+      goal,
       preference,
-      sampleMeals: ['Dal Chawal', 'Sabzi Roti', 'Chana Salad'],
-    },
+      plan: sampleMeals
+    }
   });
 }
